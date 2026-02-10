@@ -1,3 +1,5 @@
+import 'package:chatbot/theme/colors.dart';
+import 'package:chatbot/widgets/search_section.dart';
 import 'package:chatbot/widgets/side_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +12,8 @@ class MyApp extends StatelessWidget {
       body: Row(
         children: [
           SideBar(),
-          Column(
-            children: [
-              //search section
-              //footer
-            ],
+          Expanded(
+            child: Column(children: [Expanded(child: SearchSection())]),
           ),
         ],
       ),
