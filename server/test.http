@@ -1,0 +1,10 @@
+@url=http://localhost:8000
+###
+GET {{url}}/health
+###
+POST {{url}}/chat
+Content-Type: application/json
+
+{
+    "message": "Hello, how are you?"
+}
