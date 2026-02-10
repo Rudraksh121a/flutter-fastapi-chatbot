@@ -1,5 +1,5 @@
-import 'package:chatbot/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:chatbot/theme/colors.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
@@ -11,23 +11,31 @@ class SideBar extends StatefulWidget {
 class _SideBarState extends State<SideBar> {
   bool isCollapsed = true;
 
-  Widget sideBarItem(IconData icon, String? label) {
-    return Row(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-          child: Icon(icon, color: AppColors.iconGrey, size: 22),
-        ),
-        if (!isCollapsed && label != null)
-          Text(
-            label,
-            style: const TextStyle(
-              color: AppColors.textGrey,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
+  Widget sideBarItem(IconData icon, String label) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisAlignment: isCollapsed
+            ? MainAxisAlignment.center
+            : MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Icon(icon, color: AppColors.iconGrey, size: 22),
           ),
-      ],
+          if (!isCollapsed)
+            Expanded(
+              child: Text(
+                label,
+                style: const TextStyle(
+                  color: AppColors.textGrey,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 
@@ -35,51 +43,54 @@ class _SideBarState extends State<SideBar> {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      width: isCollapsed ? 64 : 128,
+      width: isCollapsed ? 64 : 180,
       color: AppColors.sideNav,
       child: Column(
-        crossAxisAlignment: isCollapsed
-            ? CrossAxisAlignment.center
-            : CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 16),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+          const SizedBox(height: 20),
+
+          Center(
             child: Icon(
               Icons.auto_awesome_mosaic,
               color: AppColors.whiteColor,
-              size: 30,
+              size: isCollapsed ? 30 : 50,
             ),
           ),
-          const SizedBox(height: 24),
-          sideBarItem(Icons.add, 'New Chat'),
+
+          const SizedBox(height: 30),
+
+          sideBarItem(Icons.home_outlined, 'Home'),
           sideBarItem(Icons.search, 'Search'),
-          sideBarItem(Icons.language, 'Explore GPTs'),
-          sideBarItem(Icons.auto_awesome, null),
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            margin: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-            child: Icon(
-              Icons.cloud_outlined,
-              color: AppColors.iconGrey,
-              size: 22,
-            ),
-          ),
+          sideBarItem(Icons.language, 'Spaces'),
+          sideBarItem(Icons.auto_awesome, 'Discover'),
+          sideBarItem(Icons.cloud_outlined, 'Library'),
+
           const Spacer(),
+
           GestureDetector(
             onTap: () => setState(() => isCollapsed = !isCollapsed),
             child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-              child: Icon(
-                isCollapsed
-                    ? Icons.keyboard_arrow_right
-                    : Icons.keyboard_arrow_left,
-                color: AppColors.iconGrey,
-                size: 22,
+              margin: const EdgeInsets.symmetric(vertical: 20),
+              child: Row(
+                mainAxisAlignment: isCollapsed
+                    ? MainAxisAlignment.center
+                    : MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Icon(
+                      isCollapsed
+                          ? Icons.keyboard_arrow_right
+                          : Icons.keyboard_arrow_left,
+                      color: AppColors.iconGrey,
+                      size: 22,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          const SizedBox(height: 16),
         ],
       ),
     );
