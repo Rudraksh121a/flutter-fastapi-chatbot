@@ -14,7 +14,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     ChatWebServices().connect();
   }
@@ -24,7 +23,6 @@ class _MyAppState extends State<MyApp> {
     return Scaffold(
       body: Row(
         children: [
-          SideBar(),
           Expanded(
             child: Column(children: [Expanded(child: ChatPage())]),
           ),
