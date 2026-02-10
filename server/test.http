@@ -1,4 +1,4 @@
-@url=http://localhost:8000
+@url=http://localhost:8001
 ###
 GET {{url}}/health
 ###
@@ -6,5 +6,5 @@ POST {{url}}/chat
 Content-Type: application/json
 
 {
-    "message": "Hello, how are you?"
+    "message": "current time?"
 }

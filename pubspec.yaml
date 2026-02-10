@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^8.0.1
+  web_socket_client: ^0.2.1
 
 dev_dependencies:
   flutter_test:
